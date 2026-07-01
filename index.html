@@ -37,6 +37,19 @@
       <a href="#visit">Visit</a>
     </nav>
     <a class="btn btn--pill nav__cta" href="#visit">Book a consultation</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu" hidden>
+    <nav aria-label="Mobile navigation">
+      <a href="#treatments">Treatments</a>
+      <a href="#gold">Signature</a>
+      <a href="#experience">Experience</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <a class="btn btn--solid" href="#visit">Book a consultation</a>
+    </nav>
   </div>
 </header>
 
@@ -198,14 +211,14 @@
     <div class="experience__lead">
       <p class="overline reveal">The experience</p>
       <h2 class="section__title reveal">Private, precise, and quietly luxurious.</h2>
-      <p class="section__lede reveal">Behind a soft-lit hallway you'll find treatment rooms kept spotless, staff who call you back the same day, and a team that treats aftercare as seriously as the appointment itself.</p>
+      <p class="section__lede reveal">Behind a soft-lit hallway you'll find treatment rooms kept spotless, staff who are quick to call you back, and a team that treats aftercare as seriously as the appointment itself.</p>
       <div class="stats" id="stats">
         <div class="stat reveal">
           <span class="stat__num" data-count="5" data-decimals="1">0.0</span>
           <span class="stat__label">Yelp rating</span>
         </div>
         <div class="stat reveal">
-          <span class="stat__num" data-count="15" data-suffix="+">0</span>
+          <span class="stat__num" data-count="12" data-suffix="+">0</span>
           <span class="stat__label">Face &amp; body treatments</span>
         </div>
         <div class="stat reveal">
@@ -250,7 +263,7 @@
 <section class="section reviews" id="reviews">
   <div class="section__head">
     <p class="overline reveal">Kind words</p>
-    <h2 class="section__title reveal">Rated 5.0 by every client who reviewed us.</h2>
+    <h2 class="section__title reveal">Rated a perfect 5.0 on Yelp.</h2>
   </div>
   <div class="quotes stagger">
     <figure class="quote">
@@ -338,7 +351,14 @@
 <script>
   window.addEventListener('load', function () {
     setTimeout(function () {
-      if (!window.__motionReady) document.documentElement.classList.add('no-motion');
+      if (!window.__motionReady) {
+        document.documentElement.classList.add('no-motion');
+        document.querySelectorAll('.stat__num').forEach(function (el) {
+          var to = parseFloat(el.dataset.count || '0');
+          var dec = parseInt(el.dataset.decimals || '0', 10);
+          el.textContent = to.toFixed(dec) + (el.dataset.suffix || '');
+        });
+      }
     }, 1600);
   });
 </script>

@@ -42,6 +42,15 @@ const setYear = () => {
   if (el) el.textContent = new Date().getFullYear();
 };
 
+// Write final stat values immediately (used on reduced-motion / no-count-up paths).
+const setStatsFinal = () => {
+  qa(".stat__num").forEach((el) => {
+    const to = parseFloat(el.dataset.count || "0");
+    const dec = parseInt(el.dataset.decimals || "0", 10);
+    el.textContent = to.toFixed(dec) + (el.dataset.suffix || "");
+  });
+};
+
 init();
 
 function init() {
@@ -50,13 +59,16 @@ function init() {
   // ---- Reduced motion: show everything, no smoothing, no scrub ----
   if (reduce) {
     document.documentElement.classList.add("no-motion");
+    setStatsFinal();
     wireAnchors(null);
+    wireMobileNav();
     return;
   }
 
   const lenis = startLenis();
   wireAnchors(lenis);
   wireNav(lenis);
+  wireMobileNav();
 
   heroEntrance();
   heroScroll();
@@ -123,6 +135,30 @@ function wireNav(lenis) {
   set(window.scrollY);
 }
 
+/* ---------------- mobile menu ---------------- */
+function wireMobileNav() {
+  const nav = q("#nav");
+  const toggle = q("#navToggle");
+  const menu = q("#mobileMenu");
+  if (!nav || !toggle || !menu) return;
+  const setOpen = (open) => {
+    nav.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.hidden = !open;
+  };
+  toggle.addEventListener("click", () =>
+    setOpen(!nav.classList.contains("menu-open")),
+  );
+  menu
+    .querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("menu-open"))
+      setOpen(false);
+  });
+}
+
 /* ---------------- hero ---------------- */
 function heroEntrance() {
   const els = qa(".hero__content > *");
@@ -185,7 +221,7 @@ function manifesto() {
       );
       return false;
     },
-    { amount: 0.4 },
+    { amount: 0.2 },
   );
 }
 
