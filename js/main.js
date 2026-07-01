@@ -215,7 +215,7 @@ function manifesto() {
     section,
     () => {
       animate(
-        section.querySelectorAll(".word-line"),
+        [...section.querySelectorAll(".word-line")],
         { opacity: [0, 1], y: [24, 0] },
         { duration: 0.7, delay: stagger(0.12), ease: EASE },
       );
@@ -233,7 +233,7 @@ function cards() {
     grid,
     () => {
       animate(
-        grid.children,
+        [...grid.children],
         { opacity: [0, 1], y: [30, 0] },
         { duration: 0.6, delay: stagger(0.08), ease: EASE },
       );
@@ -306,13 +306,14 @@ function reveals() {
   // standalone reveal elements
   inView(
     ".reveal",
-    ({ target }) => {
+    (info) => {
+      const el = info && info.target ? info.target : info;
       animate(
-        target,
+        el,
         { opacity: [0, 1], y: [28, 0] },
         { duration: 0.7, ease: EASE },
       );
-      target.classList.add("is-in");
+      el.classList.add("is-in");
       return false;
     },
     { amount: 0.2, margin: "0px 0px -8% 0px" },
@@ -324,7 +325,7 @@ function reveals() {
       group,
       () => {
         animate(
-          group.children,
+          [...group.children],
           { opacity: [0, 1], y: [26, 0] },
           { duration: 0.6, delay: stagger(0.08), ease: EASE },
         );

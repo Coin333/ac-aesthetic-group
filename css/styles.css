@@ -834,9 +834,11 @@ em {
 }
 .experience__media img {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: -8%;
   width: 100%;
-  height: 100%;
+  height: 116%; /* overscan so the parallax y-shift never reveals an edge gap */
   object-fit: cover;
 }
 
