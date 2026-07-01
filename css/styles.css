@@ -253,18 +253,10 @@ em {
   gap: 12px;
 }
 .nav__mark {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: 19px;
-  letter-spacing: 0.02em;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #1b1410;
-  background: linear-gradient(145deg, var(--gold-2), var(--gold));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  width: 42px;
+  height: 42px;
+  display: block;
+  object-fit: contain;
 }
 .nav__wordmark {
   font-family: var(--serif);
@@ -1011,6 +1003,8 @@ em {
   gap: 40px;
 }
 .footer__brand .nav__mark {
+  width: 52px;
+  height: 52px;
   margin-bottom: 18px;
 }
 .footer__name {
