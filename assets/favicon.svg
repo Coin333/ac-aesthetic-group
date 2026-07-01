@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AC Aesthetic Group">
+  <defs>
+    <linearGradient id="gold" x1="12" y1="6" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e4cb8a" />
+      <stop offset="0.46" stop-color="#c9a55e" />
+      <stop offset="1" stop-color="#a67c31" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#gold)" />
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#ffffff" stroke-opacity="0.24" stroke-width="1.4" />
+  <text x="32" y="44.5" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-weight="600"
+        font-size="33" letter-spacing="-1.5" fill="#231a12">AC</text>
+</svg>
